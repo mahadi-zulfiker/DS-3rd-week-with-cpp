@@ -11,8 +11,25 @@ class Node{
         this->next = NULL;
         this->prev = NULL;
     }
-        
 };
+
+void print_forward(Node* head){
+    Node* temp = head;
+    while(temp != NULL){
+        cout<<temp->val<<" ";
+        temp = temp->next;
+    }
+    cout<<endl;
+}
+
+void print_backward(Node* tail){
+    Node* temp = tail;
+    while(temp != NULL){
+        cout<<temp->val<<" ";
+        temp = temp->prev;
+    }
+    cout<<endl;
+}
 
 int main(){
     Node* head = new Node(10);
@@ -20,7 +37,11 @@ int main(){
     Node* tail = new Node(30);
 
     head->next = a;
+    a->prev = head;
+    a->next = tail;
+    tail->prev = a;
 
-    
+    print_forward(head);
+    print_backward(tail);
     return 0;
 }
