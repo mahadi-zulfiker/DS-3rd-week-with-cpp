@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+
 class Node{
     public:
         int val;
@@ -21,13 +22,11 @@ void print_forward(Node* head){
     cout<<endl;
 }
 
-void print_backward(Node* tail){
-    Node* temp = tail;
-    while(temp != NULL){
-        cout<<temp->val<<" ";
-        temp = temp->prev;
-    }
-    cout<<endl;
+void insert_at_head(Node* &head, int val){
+    Node* new_node = new Node(val);
+    new_node->next = head;
+    head->prev = new_node;
+    head = new_node;
 }
 
 int main(){
@@ -37,10 +36,12 @@ int main(){
 
     head->next = a;
     a->prev = head;
+
     a->next = tail;
     tail->prev = a;
 
+    insert_at_head(head, 5);
     print_forward(head);
-    print_backward(tail);
+    
     return 0;
 }
